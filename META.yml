@@ -1,0 +1,20 @@
+---
+abstract: 'Builds and installs the V8 JavaScript engine'
+author: []
+configure_requires:
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3603'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Alien-V8
+provides:
+  Alien::V8:
+    file: lib/Alien/V8.pm
+    version: 0.01
+requires:
+  File::ShareDir: 1.00
+resources:
+  license: http://dev.perl.org/licenses/
+version: 0.01
