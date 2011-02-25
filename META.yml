@@ -12,9 +12,10 @@ name: Alien-V8
 provides:
   Alien::V8:
     file: lib/Alien/V8.pm
-    version: 0.01
+    version: 0.02
 requires:
+  Archive::Tar: 1.38
   File::ShareDir: 1.00
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.01
+version: 0.02

@@ -54,20 +54,9 @@ my @ToCopy = (
 #
 ##############################################################################
 sub make_shared_directories {
-    my $err;
-    
-    File::Path::make_path($ShareIncDir, $ShareLibDir, { error => \$err});
-    
-    if (@$err) {
-        for my $diag (@$err) {
-            my ($file, $message) = %$diag;
-            
-            if ($file eq '') {
-                die "general error: $message\n";
-            } else {
-                die "failed to create directory $file: $message\n";
-            }
-        }
+    foreach my $dir (($ShareIncDir, $ShareLibDir)) {
+        eval { File::Path::mkpath($dir); };
+        die "failed to create directory $dir: $@\n" if ($@);
     }
 }
 
@@ -107,7 +96,7 @@ sub ACTION_build {
     }
     
     # Build V8
-    if ($Config{use64bitall} eq "define") {
+    if (exists($Config{ptrsize}) && $Config{ptrsize} == 8) {
         push(@SConsArgs, "arch=x64");
     }
     

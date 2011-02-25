@@ -9,5 +9,8 @@ use Alien::V8::Build;
 Alien::V8::Build->new(
     module_name => "Alien::V8",
     license => "perl",
-    share_dir => "share"
+    share_dir => "share",
+    requires => {
+        "Archive::Tar" => '1.38'
+    }
 )->create_build_script;
