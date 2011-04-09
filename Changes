@@ -1,3 +1,7 @@
+0.03  Sat Apr 9 18:26:40 CET 2011
+    - added tests
+    - check Python version before building
+
 0.02  Fri Feb 25 11:05:34 CET 2011
     - add requires on Archive::Tar (David Leadbeater)
     - use $Config{ptrsize} for 64-bit OS detection (David Leadbeater)

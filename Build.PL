@@ -11,6 +11,7 @@ Alien::V8::Build->new(
     license => "perl",
     share_dir => "share",
     requires => {
-        "Archive::Tar" => '1.38'
+        "Archive::Tar" => '1.38',
+        "IPC::Cmd" => '0.42'
     }
 )->create_build_script;

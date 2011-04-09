@@ -13,6 +13,7 @@ use File::Spec;
 use File::Path;
 use File::Copy;
 use Archive::Tar;
+use IPC::Cmd qw(can_run);
 
 ##############################################################################
 #
@@ -60,6 +61,25 @@ sub make_shared_directories {
     }
 }
 
+sub check_python_version {
+    my $pythonpath = can_run("python") or
+        die "As odd as it seems, Python needs to be installed\n";
+
+    my $version = `$pythonpath --version 2>&1`;
+    chomp($version);
+    
+    if ($version =~ /^Python\s(\d)\.(\d)\.(\d)$/) {
+        die "Bundled SCons does not run under $version\n" unless
+            ($1 == 2);
+        die "Bundled SCons needs Python version >= 2.4 (you have $version)\n" if
+            ($2 < 4);
+    } else {
+        warn "Failed to check Python version, assuming it is correct\n";
+    }
+    
+    print "Using $version from $pythonpath\n";
+}
+
 ##############################################################################
 #
 # Module::Build actions
@@ -67,6 +87,8 @@ sub make_shared_directories {
 ##############################################################################
 sub ACTION_build {
     my $self = shift;
+    
+    check_python_version();
     
     my $curdir = getcwd;
     

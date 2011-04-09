@@ -6,7 +6,7 @@ use warnings;
 use File::ShareDir qw(dist_dir);
 use File::Spec;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 sub incdir {
     my $class = shift;
